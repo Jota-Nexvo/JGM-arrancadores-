@@ -6,6 +6,8 @@
 
 ## 0. Qué tenés que hacer apenas abrís el proyecto
 
+> ⚡ **¿La obra ya está empezada?** Leé **`ESTADO-DEL-PROYECTO.md`**: tiene el avance real, las decisiones tomadas en obra y cuál es el próximo paso. Si ese archivo existe, continuá desde el paso que indica (no te presentes de cero ni arranques por el Paso 0.1 del punto 6).
+
 1. Leé **este archivo** completo.
 2. Leé **`PLAN-DE-TRABAJO.md`** completo (es el plan paso a paso que vas a ejecutar).
 3. Leé los 4 documentos de `contexto/` (visión, diseño, datos, glosario).
