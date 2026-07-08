@@ -9,16 +9,9 @@ import Calculadora from './features/calculadora/Calculadora.jsx'
 import Ajustes from './features/ajustes/Ajustes.jsx'
 import './App.css'
 
-const PANTALLAS = {
-  inicio: Inicio,
-  catalogo: Catalogo,
-  fallas: Fallas,
-  calc: Calculadora,
-  ajustes: Ajustes,
-}
-
 export default function App() {
   const [pantalla, setPantalla] = useState('inicio')
+  const [codigoBuscado, setCodigoBuscado] = useState('')
   const [splashVisible, setSplashVisible] = useState(true)
   const [splashSale, setSplashSale] = useState(false)
 
@@ -32,14 +25,22 @@ export default function App() {
     }
   }, [])
 
-  const Pantalla = PANTALLAS[pantalla]
+  // Buscar desde el Inicio: guarda el código y salta a la pestaña Fallas
+  function buscarCodigo(codigo) {
+    setCodigoBuscado(codigo)
+    setPantalla('fallas')
+  }
 
   return (
     <div className="app-shell">
       {splashVisible && <Splash saliendo={splashSale} />}
       <Encabezado />
       <main className="contenido" key={pantalla}>
-        <Pantalla />
+        {pantalla === 'inicio' && <Inicio alNavegar={setPantalla} alBuscar={buscarCodigo} />}
+        {pantalla === 'catalogo' && <Catalogo />}
+        {pantalla === 'fallas' && <Fallas codigoInicial={codigoBuscado} />}
+        {pantalla === 'calc' && <Calculadora />}
+        {pantalla === 'ajustes' && <Ajustes />}
       </main>
       <BarraPestanas activa={pantalla} alCambiar={setPantalla} />
     </div>

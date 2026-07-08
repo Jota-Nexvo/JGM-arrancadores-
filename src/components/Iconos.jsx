@@ -101,6 +101,23 @@ export function IconoEngranaje(props) {
   )
 }
 
+export function IconoEstrella(props) {
+  return (
+    <Svg {...props}>
+      <path d="m12 3 2.7 5.6 6.1.8-4.5 4.3 1.1 6-5.4-2.9-5.4 2.9 1.1-6L3.2 9.4l6.1-.8L12 3z" />
+    </Svg>
+  )
+}
+
+export function IconoLapiz(props) {
+  return (
+    <Svg {...props}>
+      <path d="M12 20h9" />
+      <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+    </Svg>
+  )
+}
+
 /* Gota de marca del encabezado: rellena en --brand-2 (no line) */
 export function GotaMarca({ tamano = 22 }) {
   return (

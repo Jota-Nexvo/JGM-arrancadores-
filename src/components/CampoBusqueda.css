@@ -1,0 +1,37 @@
+.campo-busqueda {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3.375rem; /* 54px */
+  padding: 0.25rem 0.25rem 0.25rem 0.875rem;
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: 0.875rem;
+  box-shadow: var(--shadow);
+  color: var(--ink-3); /* color de la lupa */
+}
+
+.campo-busqueda input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: var(--fuente-mono);
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+
+.campo-busqueda input::placeholder {
+  color: var(--ink-3);
+  font-weight: 500;
+  text-transform: none;
+}
+
+.campo-busqueda .boton {
+  min-height: 2.625rem;
+  padding: 0 0.875rem;
+  flex-shrink: 0;
+}

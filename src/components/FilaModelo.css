@@ -1,0 +1,51 @@
+.fila-modelo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.625rem 0;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ink-3); /* color del chevron */
+}
+
+/* Divisor entre filas dentro de una misma tarjeta */
+.fila-modelo + .fila-modelo {
+  border-top: 1px solid var(--border);
+}
+
+.fila-modelo-badge {
+  flex-shrink: 0;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radio-chip-icono);
+  background: var(--surface-2);
+  color: var(--brand);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.fila-modelo-texto {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.fila-modelo-texto b {
+  color: var(--ink);
+  font-size: 0.97rem;
+}
+
+.fila-modelo-texto small {
+  color: var(--ink-2);
+  font-size: 0.8rem;
+}
+
+.fila-modelo-estrella {
+  color: var(--brand-2);
+  flex-shrink: 0;
+}
