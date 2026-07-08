@@ -51,6 +51,7 @@ Regla de idioma UI: término técnico del manual + traducción entre paréntesis
 - **Relé de falta de fase (supervisor de fases)** en el esquema aguas arriba, por equipo. Regla: si el equipo YA trae protección de falta de fase integrada según manual (SSW-05, SSW-07, ADXL la traen), el diagrama lo indica y el relé externo se marca **«opcional según instalación»** (fuente = criterio del usuario, NO del manual).
 - **Variadores de frecuencia (futuro):** UNA sola app combinada (no app aparte). Terminar arrancadores v1 primero. Al armar el esquema de datos (Paso 11) incluir campo **`tipoEquipo`** ('arrancador' | 'variador'). Posible renombre futuro de la app.
 - **Más marcas/manuales:** el usuario subirá PDFs (sugerida carpeta `contexto/manuales-fuente/`). Flujo: procesar → extraer a `contexto/datos-extraidos/` → usuario aprueba extracción → construir ficha.
+- **Buscador "por LED"** (pedido 2026-07-08, para el Paso 21): además de buscar por código, permitir elegir LED que parpadea + cantidad de parpadeos → falla. Contexto clave que señaló el usuario: el SSW-05 (y SSW-07) de fábrica NO tienen display — los códigos Exx solo se ven con el teclado opcional HMI-SSW05-RS; en campo se ve el patrón de LEDs. ADXL no lo necesita (display LCD). SSW-08: confirmar al llegar su manual de hardware. Los datos de LED por falla ya están cargados.
 
 ## 5. Publicación (Pages) — EN PAUSA a pedido del usuario
 
