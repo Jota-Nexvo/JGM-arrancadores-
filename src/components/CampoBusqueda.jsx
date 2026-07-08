@@ -5,8 +5,8 @@ import './CampoBusqueda.css'
 
 // Campo de búsqueda de código de falla: lupa + input mono + botón Buscar.
 // Enter también busca. Reutilizado en Inicio y en la pantalla Fallas.
-export default function CampoBusqueda({ placeholder = 'ej. E72', alBuscar }) {
-  const [valor, setValor] = useState('')
+export default function CampoBusqueda({ placeholder = 'ej. E72', alBuscar, valorInicial = '' }) {
+  const [valor, setValor] = useState(valorInicial)
 
   function enviar(e) {
     e.preventDefault()

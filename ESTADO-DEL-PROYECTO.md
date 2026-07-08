@@ -1,6 +1,6 @@
 # ESTADO DEL PROYECTO — JGM Arrancadores
 
-> **Para Claude (nueva sesión):** este archivo es el traspaso de contexto. Leelo junto con `CLAUDE.md` (reglas maestras) y tenés TODO lo necesario para continuar sin re-leer el resto, salvo que el paso lo requiera. Última actualización: **2026-07-08, fin del Paso 8**.
+> **Para Claude (nueva sesión):** este archivo es el traspaso de contexto. Leelo junto con `CLAUDE.md` (reglas maestras) y tenés TODO lo necesario para continuar sin re-leer el resto, salvo que el paso lo requiera. Última actualización: **2026-07-08, fin del Paso 9**.
 
 ---
 
@@ -32,8 +32,8 @@ Regla de idioma UI: término técnico del manual + traducción entre paréntesis
 | 6 | Inicio "Panel de trabajo": buscador falla protagonista (→ salta a Fallas con el código), grilla 2×2, Favoritos + Recientes (ejemplos) | ✅ |
 | 7 | Catálogo: marcas WEG/Lovato, filtros REALES (tensión 220/380/400, corriente A, tipo de carga), datos serie de ejemplo | ✅ |
 | 8 | Ficha SSW-05 mockup: hero + chips sticky (8 secciones incl. Notas), selector de calibre, notas del técnico (localStorage), diagrama LÓGICO potencia+comando con bornes tocables y RF opcional, tabla de variantes, puesta en marcha con pasos de seguridad en ámbar, chips de fallas → buscador | ✅ |
-| **9** | **SIGUIENTE:** Calculadora mockup (2 modos, chips, aviso seguridad) + Buscador de fallas mockup (vacío/sin resultado/resultado, 21 fallas SSW-05 ya extraídas) | ⬜ |
-| 10 | Revisión integral del mockup = **aprobación del diseño** | ⬜ |
+| 9 | Buscador de fallas FUNCIONAL: 21 fallas SSW-05 (`src/data/fallas-ssw05-ejemplo.js`), normalización tolerante (72=E72=e-72), estados vacío/sin resultado/resultado completo (significa, causas, solución numerada, dónde revisar, LED, reset, fuente). Calculadora con 2 modos: motor→parámetros (P101/P102/P104/P105 con origen de cada valor) y motor→arrancador (calibre SSW-05 + contactor/fusible Tabla 9 + series que cubren), aviso de seguridad siempre visible | ✅ |
+| **10** | **SIGUIENTE:** Revisión integral del mockup = **aprobación del diseño** (recorrer todo con el usuario y aplicar ajustes) | ⬜ |
 | 11-13 | Motor de datos: esquema serie+variantes con `tipoEquipo`, IndexedDB, editor, export/import | ⬜ |
 | 14-17 | Ficha REAL WEG SSW-05 (molde de oro): datos, diagrama 2 vías (usuario elige), secciones, fallas | ⬜ |
 | 18-20 | SSW-07 → ADXL → SSW-08 (⚠ falta User's Guide hardware SSW-08, lo consigue el usuario) | ⬜ |

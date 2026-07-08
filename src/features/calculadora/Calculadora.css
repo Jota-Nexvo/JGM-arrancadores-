@@ -1,0 +1,18 @@
+.sugerencia-fila {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.sugerencia-fila .valor {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brand-2);
+  white-space: nowrap;
+}
+
+.sugerencia .param-desc {
+  margin-bottom: 0.5rem;
+}
