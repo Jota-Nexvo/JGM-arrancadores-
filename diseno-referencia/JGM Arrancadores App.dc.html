@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:#c9d1e0;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#2767A5;text-decoration:none}a:hover{color:#344687}
+input,button,textarea{font-family:inherit}
+button{cursor:pointer}
+::-webkit-scrollbar{width:0;height:0}
+:root{
+--bg:#F4F7FC;--surface:#FFFFFF;--surface-2:#EDF1FA;--surface-3:#E3EAF6;
+--border:#D8DFEF;--border-2:#BFC9E0;
+--ink:#2A3566;--ink-2:#5C6690;--ink-3:#8E96B6;
+--brand:#344687;--brand-2:#2767A5;--accent:#327DB8;--on-brand:#FFFFFF;
+--ok:#1E8A5B;--ok-bg:#E5F3EC;--warn:#93611A;--warn-bg:#F8EFD9;--danger:#C23B3B;--danger-bg:#FBE7E7;
+--code:#274690;--code-bg:#EDF1FA;--shadow:0 1px 2px rgba(30,42,80,.07);--shadow-2:0 6px 20px rgba(30,42,80,.12);
+--z:1;
+}
+[data-fs="lg"]{--z:1.14}
+[data-fs="xl"]{--z:1.28}
+@keyframes jgmFade{to{opacity:0;visibility:hidden}}
+@keyframes jgmIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#344687"></rect><path d="M50 24 C63 44 76 58 76 72 a26 26 0 0 1 -52 0 C24 58 37 44 50 24 Z" fill="#fff"></path><circle cx="50" cy="70" r="8" fill="#344687"></circle></svg></template>
+
+<div data-fs="{{ fs }}" style="position:relative;display:flex;flex-direction:column;height:100dvh;max-width:520px;margin:0 auto;background:var(--bg);color:var(--ink);overflow:hidden;box-shadow:0 0 0 1px var(--border)">
+
+<sc-if value="{{ showReviewBarInicio }}">
+<div style="flex:none;display:flex;align-items:center;gap:8px;padding:8px 10px;background:#141b30;color:#fff;overflow-x:auto">
+<span style="font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.06em;color:#8894b8;white-space:nowrap;text-transform:uppercase">Elegí el Inicio</span>
+<div style="display:flex;gap:3px;padding:3px;background:rgba(255,255,255,.08);border-radius:9px">
+<button onClick="{{ h.varA }}" style="border:none;border-radius:6px;padding:6px 12px;font:600 12.5px 'IBM Plex Sans';background:{{ vA.bg }};color:{{ vA.fg }}">A</button>
+<button onClick="{{ h.varB }}" style="border:none;border-radius:6px;padding:6px 12px;font:600 12.5px 'IBM Plex Sans';background:{{ vB.bg }};color:{{ vB.fg }}">B</button>
+<button onClick="{{ h.varC }}" style="border:none;border-radius:6px;padding:6px 12px;font:600 12.5px 'IBM Plex Sans';background:{{ vC.bg }};color:{{ vC.fg }}">C</button>
+</div>
+<span style="font:500 11.5px 'IBM Plex Sans';color:#c3cae0;white-space:nowrap;margin-left:auto">{{ variantName }}</span>
+</div>
+</sc-if>
+
+<div style="flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;zoom:var(--z)">
+
+<header style="position:sticky;top:0;z-index:6;display:flex;align-items:center;gap:11px;padding:13px 16px;background:var(--bg);border-bottom:1px solid var(--border)">
+<span style="color:var(--brand-2);display:flex"><svg width="26" height="26" viewBox="0 0 100 100"><path d="M50 12 C64 34 78 50 78 66 a28 28 0 0 1 -56 0 C22 50 36 34 50 12 Z" fill="currentColor"></path><circle cx="50" cy="64" r="9" fill="var(--bg)"></circle></svg></span>
+<div style="font:700 17px/1 'IBM Plex Sans';color:var(--ink)">JGM <span style="color:var(--brand-2)">Arrancadores</span></div>
+<div style="margin-left:auto;display:flex;align-items:center;gap:6px;font:500 11px 'IBM Plex Mono',monospace;color:var(--ink-3)"><span style="width:7px;height:7px;border-radius:50%;background:var(--ok)"></span>Offline</div>
+</header>
+
+<sc-if value="{{ isInicio }}" hint-placeholder-val="{{ true }}">
+<div>
+
+<sc-if value="{{ isA }}" hint-placeholder-val="{{ true }}">
+<div style="padding:20px 16px 28px;animation:jgmIn .18s ease both">
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.11em;text-transform:uppercase;color:var(--brand-2);margin-bottom:9px">Diagnóstico de falla</div>
+<h1 style="margin:0 0 6px;font:600 25px/1.18 'IBM Plex Sans';color:var(--ink)">¿Qué código aparece en la pantalla?</h1>
+<p style="margin:0 0 18px;font:400 15px/1.5 'IBM Plex Sans';color:var(--ink-2)">Leelo del display del arrancador y averiguá qué significa y cómo resolverlo.</p>
+<div style="display:flex;align-items:center;gap:10px;height:62px;padding:0 8px 0 16px;background:var(--surface);border:1.5px solid var(--border-2);border-radius:16px;box-shadow:var(--shadow)">
+<span style="color:var(--ink-3);display:flex"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg></span>
+<input value="{{ code }}" onInput="{{ h.code }}" onKeyDown="{{ h.key }}" placeholder="ej. E72" style="flex:1;min-width:0;border:none;outline:none;background:transparent;font:600 21px 'IBM Plex Mono',monospace;color:var(--ink);letter-spacing:.04em">
+<button onClick="{{ h.search }}" style="flex:none;height:46px;padding:0 18px;border:none;border-radius:12px;background:var(--brand);color:var(--on-brand);font:600 15px 'IBM Plex Sans';display:flex;align-items:center;gap:7px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>Buscar</button>
+</div>
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:15px">
+<span style="font:500 12.5px 'IBM Plex Sans';color:var(--ink-3)">Últimas:</span>
+<button onClick="{{ h.q72 }}" style="border:1px solid var(--border-2);background:var(--surface);color:var(--code);border-radius:9px;padding:7px 12px;font:600 13px 'IBM Plex Mono',monospace">E72</button>
+<button onClick="{{ h.q05 }}" style="border:1px solid var(--border-2);background:var(--surface);color:var(--code);border-radius:9px;padding:7px 12px;font:600 13px 'IBM Plex Mono',monospace">E05</button>
+<button onClick="{{ h.q63 }}" style="border:1px solid var(--border-2);background:var(--surface);color:var(--code);border-radius:9px;padding:7px 12px;font:600 13px 'IBM Plex Mono',monospace">E63</button>
+</div>
+<div style="margin-top:24px;display:flex;flex-direction:column;gap:11px">
+<button onClick="{{ h.goCatalogo }}" style="display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:15px;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow)">
+<span style="flex:none;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:11px;background:var(--surface-2);color:var(--brand-2)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.4"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="1.4"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="1.4"></rect><rect x="13.5" y="13.5" width="7" height="7" rx="1.4"></rect></svg></span>
+<span style="flex:1;min-width:0"><span style="display:block;font:600 16px 'IBM Plex Sans';color:var(--ink)">Catálogo</span><span style="display:block;font:400 13px 'IBM Plex Sans';color:var(--ink-3);margin-top:1px">Explorar por marca y modelo</span></span>
+<span style="color:var(--ink-3);display:flex"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+</button>
+<button onClick="{{ h.goCalc }}" style="display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:15px;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow)">
+<span style="flex:none;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:11px;background:var(--surface-2);color:var(--brand-2)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="8" x2="20" y2="8"></line><circle cx="9" cy="8" r="2.6" fill="var(--surface)"></circle><line x1="4" y1="16" x2="20" y2="16"></line><circle cx="15" cy="16" r="2.6" fill="var(--surface)"></circle></svg></span>
+<span style="flex:1;min-width:0"><span style="display:block;font:600 16px 'IBM Plex Sans';color:var(--ink)">Calculadora</span><span style="display:block;font:400 13px 'IBM Plex Sans';color:var(--ink-3);margin-top:1px">Parámetros y selección de equipo</span></span>
+<span style="color:var(--ink-3);display:flex"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isB }}">
+<div style="padding:18px 16px 28px;animation:jgmIn .18s ease both">
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px">Buscar código de falla</div>
+<div style="display:flex;align-items:center;gap:9px;height:54px;padding:0 7px 0 15px;background:var(--surface);border:1.5px solid var(--border-2);border-radius:14px;box-shadow:var(--shadow)">
+<span style="color:var(--ink-3);display:flex"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg></span>
+<input value="{{ code }}" onInput="{{ h.code }}" onKeyDown="{{ h.key }}" placeholder="ej. E72" style="flex:1;min-width:0;border:none;outline:none;background:transparent;font:600 18px 'IBM Plex Mono',monospace;color:var(--ink)">
+<button onClick="{{ h.search }}" style="flex:none;height:40px;padding:0 15px;border:none;border-radius:10px;background:var(--brand);color:var(--on-brand);font:600 14px 'IBM Plex Sans'">Buscar</button>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px">
+<button onClick="{{ h.goCatalogo }}" style="display:flex;flex-direction:column;gap:11px;text-align:left;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:15px;box-shadow:var(--shadow)">
+<span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:11px;background:var(--surface-2);color:var(--brand-2)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.4"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="1.4"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="1.4"></rect><rect x="13.5" y="13.5" width="7" height="7" rx="1.4"></rect></svg></span>
+<span><span style="display:block;font:600 15.5px 'IBM Plex Sans';color:var(--ink)">Catálogo</span><span style="display:block;font:400 12.5px 'IBM Plex Sans';color:var(--ink-3);margin-top:1px">Por marca</span></span>
+</button>
+<button onClick="{{ h.goCalc }}" style="display:flex;flex-direction:column;gap:11px;text-align:left;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:15px;box-shadow:var(--shadow)">
+<span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:11px;background:var(--surface-2);color:var(--brand-2)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="8" x2="20" y2="8"></line><circle cx="9" cy="8" r="2.6" fill="var(--surface)"></circle><line x1="4" y1="16" x2="20" y2="16"></line><circle cx="15" cy="16" r="2.6" fill="var(--surface)"></circle></svg></span>
+<span><span style="display:block;font:600 15.5px 'IBM Plex Sans';color:var(--ink)">Calculadora</span><span style="display:block;font:400 12.5px 'IBM Plex Sans';color:var(--ink-3);margin-top:1px">Parámetros</span></span>
+</button>
+<button onClick="{{ h.goFallas }}" style="display:flex;flex-direction:column;gap:11px;text-align:left;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:15px;box-shadow:var(--shadow)">
+<span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:11px;background:var(--surface-2);color:var(--brand-2)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"></path><line x1="12" y1="10" x2="12" y2="14"></line><line x1="12" y1="17" x2="12" y2="17.2"></line></svg></span>
+<span><span style="display:block;font:600 15.5px 'IBM Plex Sans';color:var(--ink)">Buscar falla</span><span style="display:block;font:400 12.5px 'IBM Plex Sans';color:var(--ink-3);margin-top:1px">Por código</span></span>
+</button>
+<button onClick="{{ h.goCatalogo }}" style="display:flex;flex-direction:column;gap:11px;text-align:left;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:15px;box-shadow:var(--shadow)">
+<span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:11px;background:var(--surface-2);color:var(--brand-2)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M4 8h16M4 16h16"></path></svg></span>
+<span><span style="display:block;font:600 15.5px 'IBM Plex Sans';color:var(--ink)">Editor</span><span style="display:block;font:400 12.5px 'IBM Plex Sans';color:var(--ink-3);margin-top:1px">Cargar modelo</span></span>
+</button>
+</div>
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);margin:22px 0 11px">Consultados recientemente</div>
+<button onClick="{{ h.goFicha }}" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:13px;background:var(--surface);border:1px solid var(--border);border-radius:13px;margin-bottom:10px">
+<span style="flex:none;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:var(--code-bg);border:1px solid var(--border);font:700 12px 'IBM Plex Mono';color:var(--brand-2)">WEG</span>
+<span style="flex:1;min-width:0"><span style="display:block;font:600 15.5px 'IBM Plex Sans';color:var(--ink)">SSW-05 Plus</span><span style="display:block;font:400 12.5px 'IBM Plex Sans';color:var(--ink-3);margin-top:1px">3–85 A · arrancador suave</span></span>
+<span style="color:var(--ink-3);display:flex"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+</button>
+<button onClick="{{ h.goCatalogo }}" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:13px;background:var(--surface);border:1px solid var(--border);border-radius:13px">
+<span style="flex:none;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:var(--code-bg);border:1px solid var(--border);font:700 10px 'IBM Plex Mono';color:var(--brand-2)">LOV</span>
+<span style="flex:1;min-width:0"><span style="display:block;font:600 15.5px 'IBM Plex Sans';color:var(--ink)">ADXL 115</span><span style="display:block;font:400 12.5px 'IBM Plex Sans';color:var(--ink-3);margin-top:1px">Lovato · con display</span></span>
+<span style="color:var(--ink-3);display:flex"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isC }}">
+<div style="padding:18px 16px 28px;animation:jgmIn .18s ease both">
+<button onClick="{{ h.goFallas }}" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:15px 16px;border:none;border-radius:16px;background:var(--brand);color:var(--on-brand);box-shadow:var(--shadow-2)">
+<span style="flex:none;display:flex;opacity:.9"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg></span>
+<span style="flex:1;min-width:0"><span style="display:block;font:600 16px 'IBM Plex Sans'">Buscar código de falla</span><span style="display:block;font:400 12.5px 'IBM Plex Mono',monospace;opacity:.8;margin-top:2px">ej. E72 · E05 · E63</span></span>
+<span style="display:flex;opacity:.85"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+</button>
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);margin:24px 0 11px">Explorá por equipo</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<button onClick="{{ h.goCatalogo }}" style="display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:17px 16px;background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow)">
+<span style="flex:none;width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:13px;background:var(--code-bg);border:1px solid var(--border);font:700 15px 'IBM Plex Mono';color:var(--brand-2)">WEG</span>
+<span style="flex:1;min-width:0"><span style="display:block;font:600 17px 'IBM Plex Sans';color:var(--ink)">WEG</span><span style="display:block;font:400 13px 'IBM Plex Sans';color:var(--ink-3);margin-top:2px">SSW-05 Plus · 8 modelos</span></span>
+<span style="color:var(--ink-3);display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+</button>
+<button onClick="{{ h.goCatalogo }}" style="display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:17px 16px;background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow)">
+<span style="flex:none;width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:13px;background:var(--code-bg);border:1px solid var(--border);font:700 13px 'IBM Plex Mono';color:var(--brand-2)">LOV</span>
+<span style="flex:1;min-width:0"><span style="display:block;font:600 17px 'IBM Plex Sans';color:var(--ink)">Lovato</span><span style="display:block;font:400 13px 'IBM Plex Sans';color:var(--ink-3);margin-top:2px">ADXL · con display HMI</span></span>
+<span style="color:var(--ink-3);display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+</button>
+</div>
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);margin:24px 0 11px">Reciente</div>
+<button onClick="{{ h.goCatalogo }}" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:13px;background:var(--surface-2);border:1px solid var(--border);border-radius:13px">
+<span style="flex:1;min-width:0"><span style="display:block;font:600 15px 'IBM Plex Sans';color:var(--ink)">WEG SSW-05.30</span><span style="display:block;font:400 12.5px 'IBM Plex Mono',monospace;color:var(--ink-3);margin-top:1px">30 A · 15 HP @ 380 V</span></span>
+<span style="color:var(--ink-3);display:flex"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+</button>
+</div>
+</sc-if>
+
+</div>
+</sc-if>
+
+<sc-if value="{{ isFallas }}">
+<div style="padding:18px 16px 28px">
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.11em;text-transform:uppercase;color:var(--brand-2);margin-bottom:8px">Buscador de fallas</div>
+<h1 style="margin:0 0 14px;font:600 23px/1.2 'IBM Plex Sans';color:var(--ink)">Código de falla</h1>
+<div style="display:flex;align-items:center;gap:10px;height:58px;padding:0 8px 0 16px;background:var(--surface);border:1.5px solid var(--border-2);border-radius:15px;box-shadow:var(--shadow)">
+<span style="color:var(--ink-3);display:flex"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg></span>
+<input value="{{ code }}" onInput="{{ h.code }}" onKeyDown="{{ h.key }}" placeholder="ej. E72" style="flex:1;min-width:0;border:none;outline:none;background:transparent;font:600 20px 'IBM Plex Mono',monospace;color:var(--ink);letter-spacing:.04em">
+<button onClick="{{ h.search }}" style="flex:none;height:44px;padding:0 17px;border:none;border-radius:11px;background:var(--brand);color:var(--on-brand);font:600 15px 'IBM Plex Sans'">Buscar</button>
+</div>
+
+<sc-if value="{{ resultNone }}">
+<div style="margin-top:22px;text-align:center;padding:20px 16px">
+<p style="margin:0 0 14px;font:400 14.5px/1.55 'IBM Plex Sans';color:var(--ink-2)">Ingresá el código tal como aparece en el display. No importan mayúsculas ni la letra inicial (72 = E72).</p>
+<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+<button onClick="{{ h.q72 }}" style="border:1px solid var(--border-2);background:var(--surface);color:var(--code);border-radius:9px;padding:8px 13px;font:600 13px 'IBM Plex Mono',monospace">E72</button>
+<button onClick="{{ h.q05 }}" style="border:1px solid var(--border-2);background:var(--surface);color:var(--code);border-radius:9px;padding:8px 13px;font:600 13px 'IBM Plex Mono',monospace">E05</button>
+<button onClick="{{ h.q63 }}" style="border:1px solid var(--border-2);background:var(--surface);color:var(--code);border-radius:9px;padding:8px 13px;font:600 13px 'IBM Plex Mono',monospace">E63</button>
+<button onClick="{{ h.q70 }}" style="border:1px solid var(--border-2);background:var(--surface);color:var(--code);border-radius:9px;padding:8px 13px;font:600 13px 'IBM Plex Mono',monospace">E70</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ resultNotFound }}">
+<div style="margin-top:22px;padding:18px;background:var(--surface);border:1px solid var(--border);border-radius:14px;text-align:center">
+<div style="font:600 16px 'IBM Plex Sans';color:var(--ink);margin-bottom:6px">Sin resultados para «{{ code }}»</div>
+<p style="margin:0;font:400 13.5px/1.5 'IBM Plex Sans';color:var(--ink-3)">En esta demo están cargadas fallas reales del WEG SSW-05. Probá E72, E05, E63, E66, E70, E67 o E03.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{ resultFound }}">
+<div style="margin-top:20px;background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);animation:jgmIn .18s ease both">
+<div style="display:flex;align-items:flex-start;gap:13px;padding:16px 16px 14px;border-bottom:1px solid var(--border)">
+<span style="flex:none;display:flex;align-items:center;justify-content:center;min-width:58px;height:52px;padding:0 10px;border-radius:12px;background:var(--code-bg);color:var(--code);font:600 22px 'IBM Plex Mono',monospace">{{ r.code }}</span>
+<div style="flex:1;min-width:0">
+<div style="font:600 17px/1.25 'IBM Plex Sans';color:var(--ink)">{{ r.titulo }}</div>
+<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:7px">
+<span style="font:600 11px 'IBM Plex Mono',monospace;color:var(--brand-2);background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:3px 7px">WEG SSW-05 Plus</span>
+<span style="display:inline-flex;align-items:center;gap:4px;font:600 11px 'IBM Plex Sans';color:var(--warn);background:var(--warn-bg);border-radius:6px;padding:3px 7px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"></path><line x1="12" y1="10" x2="12" y2="14"></line><line x1="12" y1="17" x2="12" y2="17.2"></line></svg>sin verificar</span>
+</div>
+</div>
+</div>
+<div style="padding:15px 16px">
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px">Qué significa</div>
+<p style="margin:0;font:400 15px/1.55 'IBM Plex Sans';color:var(--ink)">{{ r.significa }}</p>
+</div>
+<div style="padding:0 16px 15px">
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px">Causas probables</div>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ r.causas }}" as="c" hint-placeholder-count="3">
+<li style="display:flex;gap:9px;font:400 14.5px/1.45 'IBM Plex Sans';color:var(--ink-2)"><span style="flex:none;width:6px;height:6px;border-radius:50%;background:var(--ink-3);margin-top:8px"></span><span>{{ c }}</span></li>
+</sc-for>
+</ul>
+</div>
+<div style="padding:0 16px 16px">
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-bottom:9px">Solución paso a paso</div>
+<ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ r.solucion }}" as="s" hint-placeholder-count="3">
+<li style="display:flex;gap:11px;align-items:flex-start;font:400 14.5px/1.5 'IBM Plex Sans';color:var(--ink)"><span style="flex:none;width:24px;height:24px;border-radius:8px;background:var(--brand);color:var(--on-brand);display:flex;align-items:center;justify-content:center;font:600 12.5px 'IBM Plex Mono',monospace">{{ s.n }}</span><span style="padding-top:2px">{{ s.text }}</span></li>
+</sc-for>
+</ol>
+</div>
+<div style="display:flex;gap:10px;padding:0 16px 16px;flex-wrap:wrap">
+<div style="flex:1;min-width:120px;padding:11px 13px;background:var(--surface-2);border:1px solid var(--border);border-radius:11px">
+<div style="font:600 10px 'IBM Plex Sans';letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px">Dónde revisar</div>
+<div style="font:600 15px 'IBM Plex Mono',monospace;color:var(--code)">{{ r.parametro }}</div>
+</div>
+<div style="flex:1;min-width:120px;padding:11px 13px;background:var(--surface-2);border:1px solid var(--border);border-radius:11px">
+<div style="font:600 10px 'IBM Plex Sans';letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px">LED</div>
+<div style="font:500 13px 'IBM Plex Sans';color:var(--ink)">{{ r.led }}</div>
+</div>
+</div>
+<div style="padding:12px 16px;border-top:1px solid var(--border);background:var(--surface-2)">
+<div style="display:flex;gap:8px;font:400 13px/1.45 'IBM Plex Sans';color:var(--ink-2)"><span style="font-weight:600;color:var(--ink)">Reset:</span><span>{{ r.reset }}</span></div>
+</div>
+<div style="padding:11px 16px;border-top:1px solid var(--border);font:400 11.5px/1.5 'IBM Plex Sans';color:var(--ink-3)">Fuente: Manual WEG SSW-05 Plus · 0899.5119 / 2.3X · revisión pendiente</div>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCatalogo }}">
+<div style="padding:18px 16px 28px">
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.11em;text-transform:uppercase;color:var(--brand-2);margin-bottom:8px">Catálogo</div>
+<h1 style="margin:0 0 4px;font:600 23px/1.2 'IBM Plex Sans';color:var(--ink)">Equipos</h1>
+<p style="margin:0 0 16px;font:400 13.5px/1.5 'IBM Plex Sans';color:var(--ink-3)">La lista completa con filtros (tensión, corriente/HP, tipo de carga) la armamos como próximo paso. Acá podés abrir la ficha de ejemplo ya diseñada.</p>
+<button onClick="{{ h.goFicha }}" style="display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:15px;box-shadow:var(--shadow)">
+<span style="flex:none;width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:13px;background:var(--code-bg);border:1px solid var(--border);font:700 13px 'IBM Plex Mono';color:var(--brand-2)">WEG</span>
+<span style="flex:1;min-width:0"><span style="display:block;font:600 16.5px 'IBM Plex Sans';color:var(--ink)">SSW-05.30</span><span style="display:block;font:400 12.5px 'IBM Plex Mono',monospace;color:var(--ink-3);margin-top:2px">30 A · 15 HP @ 380 V · by-pass</span></span>
+<span style="color:var(--ink-3);display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isFicha }}">
+<div style="animation:jgmIn .18s ease both">
+<div style="display:flex;align-items:center;gap:10px;padding:6px 8px 14px 8px">
+<button onClick="{{ h.fichaBack }}" style="flex:none;width:40px;height:40px;border:none;background:transparent;color:var(--ink-2);display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 6 9 12 15 18"></polyline></svg></button>
+<span style="font:500 13px 'IBM Plex Sans';color:var(--ink-3)">Catálogo / WEG</span>
+</div>
+
+<div style="padding:0 16px">
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:7px">
+<span style="font:600 11px 'IBM Plex Sans';letter-spacing:.06em;text-transform:uppercase;color:var(--brand-2)">WEG · Serie {{ model.serie }}</span>
+<span style="display:inline-flex;align-items:center;gap:4px;font:600 11px 'IBM Plex Sans';color:var(--warn);background:var(--warn-bg);border-radius:7px;padding:4px 8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"></path><line x1="12" y1="10" x2="12" y2="14"></line><line x1="12" y1="17" x2="12" y2="17.2"></line></svg>sin verificar</span>
+</div>
+<h1 style="margin:0;font:600 30px/1.08 'IBM Plex Sans';color:var(--ink)">{{ model.nombre }}</h1>
+<div style="font:400 14px 'IBM Plex Sans';color:var(--ink-2);margin-top:6px">Arrancador suave (soft-starter)</div>
+<div style="display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:7px 11px;background:var(--surface-2);border:1px solid var(--border);border-radius:9px;max-width:100%"><span style="flex:none;font:600 10px 'IBM Plex Sans';letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)">Cód.</span><span style="font:600 12.5px 'IBM Plex Mono',monospace;color:var(--code);word-break:break-all">{{ model.codigoComercial }}</span></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px">
+<div style="padding:13px;background:var(--surface);border:1px solid var(--border);border-radius:13px;box-shadow:var(--shadow)"><div style="font:600 10px 'IBM Plex Sans';letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)">Corriente</div><div style="font:600 21px 'IBM Plex Mono',monospace;color:var(--ink);margin-top:4px">{{ model.corriente }}</div></div>
+<div style="padding:13px;background:var(--surface);border:1px solid var(--border);border-radius:13px;box-shadow:var(--shadow)"><div style="font:600 10px 'IBM Plex Sans';letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)">Tensión</div><div style="font:600 21px 'IBM Plex Mono',monospace;color:var(--ink);margin-top:4px">{{ model.tension }}</div></div>
+<div style="padding:13px;background:var(--surface);border:1px solid var(--border);border-radius:13px;box-shadow:var(--shadow)"><div style="font:600 10px 'IBM Plex Sans';letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)">By-pass</div><div style="font:600 16px 'IBM Plex Sans';color:var(--ink);margin-top:6px">{{ model.bypass }}</div></div>
+<div style="padding:13px;background:var(--surface);border:1px solid var(--border);border-radius:13px;box-shadow:var(--shadow)"><div style="font:600 10px 'IBM Plex Sans';letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)">Arranque</div><div style="font:600 16px 'IBM Plex Sans';color:var(--ink);margin-top:6px">{{ model.arranque }}</div></div>
+</div>
+
+<div style="display:flex;gap:8px;overflow-x:auto;padding:2px 16px 14px;position:sticky;top:0;z-index:4;background:var(--bg)">
+<sc-for list="{{ fichaTabs }}" as="t" hint-placeholder-count="7">
+<button onClick="{{ t.on }}" style="flex:none;border:none;border-radius:10px;padding:9px 14px;font:600 13.5px 'IBM Plex Sans';white-space:nowrap;background:{{ t.bg }};color:{{ t.fg }}">{{ t.label }}</button>
+</sc-for>
+</div>
+
+<div style="padding:0 16px 28px">
+
+<sc-if value="{{ secDatos }}">
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin:4px 0 10px">Potencia del motor</div>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden">
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:0;background:var(--surface-2);border-bottom:1px solid var(--border)"><div style="padding:9px 13px;font:600 10.5px 'IBM Plex Sans';letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)">Tensión</div><div style="padding:9px 6px;font:600 10.5px 'IBM Plex Sans';letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)">HP</div><div style="padding:9px 6px;font:600 10.5px 'IBM Plex Sans';letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)">kW</div></div>
+<sc-for list="{{ potencias }}" as="p" hint-placeholder-count="3">
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;border-top:1px solid var(--border)"><div style="padding:12px 13px;font:500 14px 'IBM Plex Mono',monospace;color:var(--ink)">{{ p.t }}</div><div style="padding:12px 6px;font:600 14px 'IBM Plex Mono',monospace;color:var(--code)">{{ p.hp }}</div><div style="padding:12px 6px;font:400 14px 'IBM Plex Mono',monospace;color:var(--ink-2)">{{ p.kw }}</div></div>
+</sc-for>
+</div>
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin:20px 0 10px">Instalación y protección</div>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden">
+<div style="display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-bottom:1px solid var(--border)"><span style="font:400 14px 'IBM Plex Sans';color:var(--ink-2)">Fusible recomendado</span><span style="font:600 14px 'IBM Plex Mono',monospace;color:var(--ink)">{{ model.fusible }}</span></div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-bottom:1px solid var(--border)"><span style="font:400 14px 'IBM Plex Sans';color:var(--ink-2)">Contactor</span><span style="font:600 14px 'IBM Plex Mono',monospace;color:var(--ink)">{{ model.contactor }}</span></div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-bottom:1px solid var(--border)"><span style="font:400 14px 'IBM Plex Sans';color:var(--ink-2)">Cortocircuito (Icc)</span><span style="font:600 14px 'IBM Plex Mono',monospace;color:var(--ink)">{{ model.cortocircuito }}</span></div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-bottom:1px solid var(--border)"><span style="font:400 14px 'IBM Plex Sans';color:var(--ink-2)">Cable de potencia</span><span style="font:600 14px 'IBM Plex Mono',monospace;color:var(--ink)">{{ model.cable }}</span></div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:12px 14px"><span style="font:400 14px 'IBM Plex Sans';color:var(--ink-2)">Torque de apriete</span><span style="font:600 14px 'IBM Plex Mono',monospace;color:var(--ink)">{{ model.par }}</span></div>
+</div>
+<div style="display:flex;gap:10px;margin-top:14px">
+<div style="flex:1;padding:11px 13px;background:var(--surface-2);border:1px solid var(--border);border-radius:11px"><div style="font:600 10px 'IBM Plex Sans';letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)">Tamaño</div><div style="font:600 14px 'IBM Plex Sans';color:var(--ink);margin-top:4px">{{ model.tamano }}</div></div>
+<div style="flex:1;padding:11px 13px;background:var(--surface-2);border:1px solid var(--border);border-radius:11px"><div style="font:600 10px 'IBM Plex Sans';letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)">Peso</div><div style="font:600 14px 'IBM Plex Sans';color:var(--ink);margin-top:4px">{{ model.peso }}</div></div>
+</div>
+<div style="margin-top:16px;font:400 11.5px/1.5 'IBM Plex Sans';color:var(--ink-3)">Fuente: Manual WEG SSW-05 Plus · 0899.5119 / 2.3X · revisión pendiente</div>
+</sc-if>
+
+<sc-if value="{{ secParametros }}">
+<div style="display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{ params }}" as="p" hint-placeholder-count="4">
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;box-shadow:var(--shadow)">
+<div style="display:flex;align-items:center;gap:10px">
+<span style="flex:none;font:600 14px 'IBM Plex Mono',monospace;color:#fff;background:var(--brand);border-radius:8px;padding:5px 9px">{{ p.codigo }}</span>
+<span style="flex:1;min-width:0;font:600 15.5px 'IBM Plex Sans';color:var(--ink)">{{ p.nombre }}</span>
+</div>
+<div style="font:400 12px 'IBM Plex Sans';font-style:italic;color:var(--ink-3);margin:6px 0 0">{{ p.trad }}</div>
+<p style="margin:9px 0 12px;font:400 14px/1.5 'IBM Plex Sans';color:var(--ink-2)">{{ p.desc }}</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<span style="font:500 12px 'IBM Plex Sans';color:var(--ink-2);background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:5px 9px">Rango <b style="font-family:'IBM Plex Mono',monospace;color:var(--ink)">{{ p.rango }} {{ p.unidad }}</b></span>
+<span style="font:500 12px 'IBM Plex Sans';color:var(--ink-2);background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:5px 9px">Def. <b style="font-family:'IBM Plex Mono',monospace;color:var(--ink)">{{ p.defecto }}</b></span>
+<span style="font:500 12px 'IBM Plex Sans';color:var(--brand-2);background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:5px 9px">Trim-pot: {{ p.trimpot }}</span>
+</div>
+</div>
+</sc-for>
+</div>
+<div style="margin-top:14px;font:400 11.5px/1.5 'IBM Plex Sans';color:var(--ink-3)">Fuente: Manual WEG SSW-05 Plus · parámetros P101–P106 · revisión pendiente</div>
+</sc-if>
+
+<sc-if value="{{ secDiagrama }}">
+<div style="display:flex;align-items:flex-start;gap:9px;padding:11px 13px;background:var(--warn-bg);border:1px solid var(--warn);border-radius:12px;margin:2px 0 16px">
+<span style="flex:none;color:var(--warn);display:flex;margin-top:1px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"></path><line x1="12" y1="10" x2="12" y2="14"></line><line x1="12" y1="17" x2="12" y2="17.2"></line></svg></span>
+<div style="font:500 12.5px/1.45 'IBM Plex Sans';color:var(--warn)">Trabajá siempre con el equipo <b>desenergizado</b>. Diagrama de ejemplo — verificá contra el manual del equipo antes de conectar.</div>
+</div>
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px">Tocá un borne para ver qué es</div>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px 14px;box-shadow:var(--shadow)">
+<div style="text-align:center;font:600 10px 'IBM Plex Sans';letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)">Red trifásica · {{ model.tension }}</div>
+<div style="width:2px;height:14px;background:var(--border-2);margin:6px auto 8px"></div>
+<button onClick="{{ bornePowerIn.on }}" style="display:block;width:100%;border:1.5px solid {{ bornePowerIn.bd }};border-radius:11px;padding:11px;background:{{ bornePowerIn.bg }};color:{{ bornePowerIn.fg }};font:600 16px 'IBM Plex Mono',monospace;letter-spacing:.14em">R  S  T</button>
+<div style="border:1.5px dashed var(--border-2);border-radius:14px;padding:14px 12px;margin:10px 0">
+<div style="text-align:center;font:600 14px 'IBM Plex Sans';color:var(--ink)">WEG {{ model.nombre }}</div>
+<div style="text-align:center;font:400 11px 'IBM Plex Sans';color:var(--ink-3);margin-top:2px">by-pass integrado</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+<sc-for list="{{ bornesControl }}" as="b" hint-placeholder-count="7">
+<button onClick="{{ b.on }}" style="border:1.5px solid {{ b.bd }};border-radius:9px;padding:9px 6px;background:{{ b.bg }};color:{{ b.fg }};font:600 13px 'IBM Plex Mono',monospace">{{ b.label }}</button>
+</sc-for>
+</div>
+</div>
+<button onClick="{{ bornePowerOut.on }}" style="display:block;width:100%;border:1.5px solid {{ bornePowerOut.bd }};border-radius:11px;padding:11px;background:{{ bornePowerOut.bg }};color:{{ bornePowerOut.fg }};font:600 16px 'IBM Plex Mono',monospace;letter-spacing:.14em">U  V  W</button>
+<div style="width:2px;height:14px;background:var(--border-2);margin:8px auto 6px"></div>
+<div style="text-align:center;font:600 10px 'IBM Plex Sans';letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)">Motor 3~</div>
+</div>
+
+<sc-if value="{{ hasBorne }}">
+<div style="margin-top:14px;background:var(--surface);border:1px solid var(--brand-2);border-radius:14px;padding:15px;box-shadow:var(--shadow-2);animation:jgmIn .15s ease both">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:9px"><span style="font:600 15px 'IBM Plex Mono',monospace;color:#fff;background:var(--brand);border-radius:8px;padding:5px 10px">{{ borneDetail.label }}</span><span style="font:600 14.5px 'IBM Plex Sans';color:var(--ink)">{{ borneDetail.rol }}</span></div>
+<p style="margin:0 0 8px;font:400 14px/1.5 'IBM Plex Sans';color:var(--ink)">{{ borneDetail.que }}</p>
+<div style="font:400 12.5px/1.45 'IBM Plex Sans';color:var(--ink-2);background:var(--surface-2);border-radius:9px;padding:9px 11px">{{ borneDetail.notas }}</div>
+</div>
+</sc-if>
+<sc-if value="{{ noBorne }}">
+<div style="margin-top:14px;text-align:center;font:400 13px 'IBM Plex Sans';color:var(--ink-3);padding:6px">Ningún borne seleccionado.</div>
+</sc-if>
+<div style="margin-top:14px;font:400 11.5px/1.5 'IBM Plex Sans';color:var(--ink-3)">Fuente: Manual WEG SSW-05 Plus · conexiones · revisión pendiente. El diagrama vectorial exacto de cada modelo se define en la etapa de datos.</div>
+</sc-if>
+
+<sc-if value="{{ secPresets }}">
+<p style="margin:2px 0 14px;font:400 13.5px/1.5 'IBM Plex Sans';color:var(--ink-2)">El SSW-05 no trae asistente por tipo de carga. Estos son puntos de partida — cada uno indica de dónde sale el dato.</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{ presets }}" as="p" hint-placeholder-count="2">
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;box-shadow:var(--shadow)">
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span style="font:600 16px 'IBM Plex Sans';color:var(--ink)">{{ p.carga }}</span><span style="font:500 10.5px 'IBM Plex Sans';color:var(--ink-3);background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:3px 7px">{{ p.fuenteTxt }}</span></div>
+<p style="margin:9px 0 0;font:400 14px/1.5 'IBM Plex Sans';color:var(--ink-2)">{{ p.nota }}</p>
+</div>
+</sc-for>
+</div>
+<div style="margin-top:14px;font:400 11.5px/1.5 'IBM Plex Sans';color:var(--ink-3)">Distinguir siempre «valor del fabricante» de «guía general». Revisión pendiente.</div>
+</sc-if>
+
+<sc-if value="{{ secProtecciones }}">
+<div style="display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ protecciones }}" as="p" hint-placeholder-count="5">
+<div style="display:flex;align-items:flex-start;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:13px 14px;box-shadow:var(--shadow)">
+<span style="flex:none;color:var(--brand-2);display:flex;margin-top:1px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path></svg></span>
+<div style="flex:1;min-width:0"><div style="font:600 15px 'IBM Plex Sans';color:var(--ink)">{{ p.nombre }}</div><p style="margin:4px 0 0;font:400 13.5px/1.45 'IBM Plex Sans';color:var(--ink-2)">{{ p.detalle }}</p></div>
+<span style="flex:none;font:600 11px 'IBM Plex Mono',monospace;color:var(--code);background:var(--code-bg);border-radius:7px;padding:4px 7px">{{ p.parametro }}</span>
+</div>
+</sc-for>
+</div>
+<div style="margin-top:14px;font:400 11.5px/1.5 'IBM Plex Sans';color:var(--ink-3)">Fuente: Manual WEG SSW-05 Plus · protecciones · revisión pendiente</div>
+</sc-if>
+
+<sc-if value="{{ secPuesta }}">
+<ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px">
+<sc-for list="{{ puesta }}" as="p" hint-placeholder-count="4">
+<li style="display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:13px 14px;box-shadow:var(--shadow)">
+<span style="flex:none;width:26px;height:26px;border-radius:8px;background:{{ p.bg }};color:#fff;display:flex;align-items:center;justify-content:center;font:600 13px 'IBM Plex Mono',monospace">{{ p.n }}</span>
+<span style="flex:1;padding-top:3px;font:400 14.5px/1.5 'IBM Plex Sans';color:var(--ink)">{{ p.texto }}</span>
+</li>
+</sc-for>
+</ol>
+<div style="display:flex;align-items:center;gap:8px;margin-top:12px;font:500 12px 'IBM Plex Sans';color:var(--warn)"><span style="width:12px;height:12px;border-radius:4px;background:var(--warn)"></span>Los pasos en ámbar son críticos de seguridad.</div>
+<div style="margin-top:12px;font:400 11.5px/1.5 'IBM Plex Sans';color:var(--ink-3)">Fuente: Manual WEG SSW-05 Plus · puesta en marcha · revisión pendiente</div>
+</sc-if>
+
+<sc-if value="{{ secFallas }}">
+<p style="margin:2px 0 14px;font:400 13.5px/1.5 'IBM Plex Sans';color:var(--ink-2)">Fallas cargadas para este modelo. Tocá un código para ver qué significa y cómo resolverlo.</p>
+<div style="display:flex;gap:9px;flex-wrap:wrap">
+<sc-for list="{{ fallaChips }}" as="f" hint-placeholder-count="6">
+<button onClick="{{ f.on }}" style="border:1px solid var(--border-2);background:var(--surface);color:var(--code);border-radius:10px;padding:10px 15px;font:600 15px 'IBM Plex Mono',monospace">{{ f.code }}</button>
+</sc-for>
+</div>
+<button onClick="{{ h.goFallas }}" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:16px;padding:13px;border:none;border-radius:12px;background:var(--brand);color:#fff;font:600 15px 'IBM Plex Sans'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>Abrir buscador de fallas</button>
+</sc-if>
+
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCalc }}">
+<div style="padding:60px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;min-height:60vh;justify-content:center">
+<span style="color:var(--border-2);display:flex;margin-bottom:18px"><svg width="52" height="52" viewBox="0 0 100 100"><path d="M50 12 C64 34 78 50 78 66 a28 28 0 0 1 -56 0 C22 50 36 34 50 12 Z" fill="currentColor"></path><circle cx="50" cy="64" r="9" fill="var(--bg)"></circle></svg></span>
+<div style="font:600 18px 'IBM Plex Sans';color:var(--ink);margin-bottom:7px">Calculadora</div>
+<p style="margin:0;max-width:280px;font:400 14px/1.55 'IBM Plex Sans';color:var(--ink-3)">Dos modos (parámetros sugeridos y selección de equipo), con entrada por chips. Lo armamos apenas elijas el Inicio.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{ isAjustes }}">
+<div style="padding:18px 16px 28px">
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.11em;text-transform:uppercase;color:var(--brand-2);margin-bottom:8px">Ajustes</div>
+<h1 style="margin:0 0 20px;font:600 23px/1.2 'IBM Plex Sans';color:var(--ink)">Preferencias</h1>
+
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px">Tamaño de letra</div>
+<div style="display:flex;gap:4px;padding:4px;background:var(--surface-2);border:1px solid var(--border);border-radius:13px;margin-bottom:8px">
+<button onClick="{{ h.fsMd }}" style="flex:1;border:none;border-radius:10px;padding:12px;font:600 15px 'IBM Plex Sans';background:{{ fMd.bg }};color:{{ fMd.fg }}">A</button>
+<button onClick="{{ h.fsLg }}" style="flex:1;border:none;border-radius:10px;padding:12px;font:600 18px 'IBM Plex Sans';background:{{ fLg.bg }};color:{{ fLg.fg }}">A+</button>
+<button onClick="{{ h.fsXl }}" style="flex:1;border:none;border-radius:10px;padding:12px;font:600 21px 'IBM Plex Sans';background:{{ fXl.bg }};color:{{ fXl.fg }}">A++</button>
+</div>
+<p style="margin:0 0 22px;font:400 12.5px/1.5 'IBM Plex Sans';color:var(--ink-3)">Agranda toda la app para leer mejor bajo el sol o con guantes.</p>
+
+<div style="font:600 11px 'IBM Plex Sans';letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px">Respaldo</div>
+<div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px">
+<button style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:13px">
+<span style="color:var(--brand-2);display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 11l4 4 4-4"></path><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path></svg></span>
+<span style="flex:1"><span style="display:block;font:600 15px 'IBM Plex Sans';color:var(--ink)">Exportar catálogo</span><span style="display:block;font:400 12px 'IBM Plex Sans';color:var(--ink-3);margin-top:1px">Guardar respaldo en un archivo</span></span>
+</button>
+<button style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:13px">
+<span style="color:var(--brand-2);display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M8 7l4-4 4 4"></path><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path></svg></span>
+<span style="flex:1"><span style="display:block;font:600 15px 'IBM Plex Sans';color:var(--ink)">Importar respaldo</span><span style="display:block;font:400 12px 'IBM Plex Sans';color:var(--ink-3);margin-top:1px">Restaurar desde un archivo</span></span>
+</button>
+</div>
+
+<div style="padding:16px;background:var(--surface-2);border:1px solid var(--border);border-radius:13px;text-align:center">
+<div style="font:600 14px 'IBM Plex Sans';color:var(--ink)">JGM Servicios · Arrancadores</div>
+<div style="font:400 12px 'IBM Plex Mono',monospace;color:var(--ink-3);margin-top:4px">v0.1 · funciona sin conexión</div>
+</div>
+</div>
+</sc-if>
+
+</div>
+
+<nav style="flex:none;display:flex;align-items:stretch;background:var(--surface);border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom)">
+<button onClick="{{ h.goInicio }}" style="flex:1;border:none;background:transparent;padding:9px 2px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ tab.inicio }}"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"></path><path d="M6 10v9h12v-9"></path></svg><span style="font:600 10.5px 'IBM Plex Sans'">Inicio</span></button>
+<button onClick="{{ h.goCatalogo }}" style="flex:1;border:none;background:transparent;padding:9px 2px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ tab.catalogo }}"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.4"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="1.4"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="1.4"></rect><rect x="13.5" y="13.5" width="7" height="7" rx="1.4"></rect></svg><span style="font:600 10.5px 'IBM Plex Sans'">Catálogo</span></button>
+<button onClick="{{ h.goFallas }}" style="flex:1;border:none;background:transparent;padding:9px 2px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ tab.fallas }}"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"></path><line x1="12" y1="10" x2="12" y2="14"></line><line x1="12" y1="17" x2="12" y2="17.2"></line></svg><span style="font:600 10.5px 'IBM Plex Sans'">Fallas</span></button>
+<button onClick="{{ h.goCalc }}" style="flex:1;border:none;background:transparent;padding:9px 2px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ tab.calc }}"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="8" x2="20" y2="8"></line><circle cx="9" cy="8" r="2.6" fill="var(--surface)"></circle><line x1="4" y1="16" x2="20" y2="16"></line><circle cx="15" cy="16" r="2.6" fill="var(--surface)"></circle></svg><span style="font:600 10.5px 'IBM Plex Sans'">Calc.</span></button>
+<button onClick="{{ h.goAjustes }}" style="flex:1;border:none;background:transparent;padding:9px 2px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ tab.ajustes }}"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"></path></svg><span style="font:600 10.5px 'IBM Plex Sans'">Ajustes</span></button>
+</nav>
+
+<sc-if value="{{ splash }}" hint-placeholder-val="{{ true }}">
+<div style="position:absolute;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:var(--brand);animation:jgmFade .3s ease .85s forwards">
+<div style="width:112px;height:112px;border-radius:26px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 34px rgba(0,0,0,.28);overflow:hidden"><img src="assets/jgm-logo.png" alt="JGM Servicios" style="width:100%;height:100%;object-fit:contain"></div>
+<div style="text-align:center">
+<div style="font:700 20px 'IBM Plex Sans';color:#fff;letter-spacing:.01em">JGM Arrancadores</div>
+<div style="font:400 12.5px 'IBM Plex Mono',monospace;color:rgba(255,255,255,.75);margin-top:5px">Guía de campo · sin conexión</div>
+</div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:402,&quot;height&quot;:860},&quot;defaultVariant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;A&quot;,&quot;B&quot;,&quot;C&quot;],&quot;default&quot;:&quot;B&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Inicio&quot;},&quot;showReviewBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Revisión&quot;}}">
+class Component extends DCLogic {
+  state = {
+    variant: this.props.defaultVariant || 'B',
+    fs: 'md',
+    screen: 'inicio',
+    code: '',
+    result: undefined,
+    fichaSec: 'datos',
+    borne: null,
+    splash: true
+  };
+
+  componentDidMount() {
+    let seen = false;
+    try { seen = !!sessionStorage.getItem('jgm_splash_seen'); } catch (e) {}
+    if (seen) { this.setState({ splash: false }); return; }
+    this._t = setTimeout(() => {
+      this.setState({ splash: false });
+      try { sessionStorage.setItem('jgm_splash_seen', '1'); } catch (e) {}
+    }, 1150);
+  }
+  componentWillUnmount() { clearTimeout(this._t); }
+
+  faults = {
+    '72': { code: 'E72', titulo: 'Sobrecorriente antes del by-pass', led: 'Internal Fault · 4 parpadeos',
+      significa: 'En la transición del fin de la rampa al cierre del by-pass, la corriente llegó al nivel de disparo (37,5 A en equipos de 3–30 A; 200 A en 45–85 A).',
+      causas: ['Rampa de aceleración demasiado corta.', 'Motor con corriente nominal mayor a la del SSW.', 'Eje trabado o carga excesiva.'],
+      solucion: ['Alargá el tiempo de rampa de aceleración (P102) para dar más tiempo al arranque.', 'Verificá que el SSW esté bien dimensionado: la corriente del motor no debe superar la del arrancador.', 'Revisá que el eje gire libre y sin carga excesiva antes de rearrancar.'],
+      parametro: 'P102 · P105', reset: 'Power-on · botón RESET · DI2 · auto (15 min)' },
+    '05': { code: 'E05', titulo: 'Sobrecarga de salida (función Ixt)', led: 'Overload',
+      significa: 'Se excedieron los tiempos de la clase térmica (clase 10). El arrancador protegió al motor por sobrecarga.',
+      causas: ['Ajuste de corriente del motor (P105) demasiado bajo.', 'Carga excesiva en el eje.', 'Demasiados arranques sucesivos.'],
+      solucion: ['Ajustá la corriente del motor: P105 = (corriente del motor ÷ corriente del SSW) × 100.', 'Revisá la carga mecánica del eje.', 'Respetá el régimen: máximo 4 arranques por hora.'],
+      parametro: 'P105', reset: 'Power-on · botón RESET · DI2 · auto' },
+    '63': { code: 'E63', titulo: 'Rotor bloqueado', led: 'Stall',
+      significa: 'El tiempo de rampa programado es menor que el tiempo real de aceleración, o el eje no llega a girar.',
+      causas: ['Rampa de aceleración muy corta.', 'Eje trabado.', 'Carga excesiva o demasiados arranques.'],
+      solucion: ['Aumentá el tiempo de rampa de aceleración (P102).', 'Verificá que el eje gire libre y liberá la carga.', 'Confirmá que el motor sea adecuado para la aplicación.'],
+      parametro: 'P102', reset: 'Power-on · botón RESET · DI2 · auto' },
+    '66': { code: 'E66', titulo: 'Sobrecorriente', led: 'Overcurrent',
+      significa: 'En régimen (100% de tensión) la corriente superó 3 veces el ajuste de corriente del motor durante más de 1 segundo.',
+      causas: ['Cortocircuito entre fases.', 'Sobrecarga momentánea.', 'Eje trabado.'],
+      solucion: ['Desenergizá y revisá aislación y posibles cortocircuitos en el motor y cables.', 'Verificá la carga mecánica.', 'Confirmá el ajuste de corriente del motor (P105).'],
+      parametro: 'P105', reset: 'Power-on · botón RESET · DI2' },
+    '70': { code: 'E70', titulo: 'Subtensión en la alimentación de control', led: 'Internal Fault · 2 parpadeos',
+      significa: 'La tensión en los bornes A1/A2 (alimentación de la electrónica) cayó por debajo del 80% de la nominal.',
+      causas: ['Tensión de alimentación baja.', 'Mal contacto en A1/A2.', 'Fusible de control abierto.'],
+      solucion: ['Medí la tensión en A1/A2: debe estar entre 90 y 250 Vca.', 'Reajustá las conexiones de control (equipo desenergizado).', 'Revisá los fusibles del circuito de control (F11/F12/F21).'],
+      parametro: 'A1 / A2', reset: 'Power-on · botón RESET · DI2 · auto' },
+    '67': { code: 'E67', titulo: 'Secuencia de fase incorrecta', led: 'Phase Seq',
+      significa: 'La secuencia de fases de la red de entrada está invertida respecto de la esperada.',
+      causas: ['Dos fases de la entrada intercambiadas.', 'Cambio reciente en el tablero o la acometida.'],
+      solucion: ['Desenergizá el equipo.', 'Intercambiá dos de las tres fases de entrada (R / S / T).', 'Rearrancá y verificá el sentido de giro del motor.'],
+      parametro: 'R / S / T', reset: 'Power-on · botón RESET · DI2 · sin auto-reset' },
+    '03': { code: 'E03', titulo: 'Falta de fase / subcorriente', led: 'Phase Loss',
+      significa: 'Al arrancar no hay tensión en R/S/T o el motor está desconectado. En marcha: falta de fase (entrada o salida), corriente muy baja o desbalance entre fases mayor al 30%.',
+      causas: ['Falla de fase de la red o fusible abierto.', 'Motor desconectado o mal conectado.', 'Problema del contactor de entrada.', 'Ajuste de corriente del motor (P105) mal calibrado.'],
+      solucion: ['Verificá tensión en R/S/T y el estado de los fusibles.', 'Revisá la conexión del motor (U/V/W).', 'Controlá el contactor de entrada.', 'Reajustá P105 según la corriente real del motor.'],
+      parametro: 'P105', reset: 'Power-on · botón RESET · DI2 · auto' }
+  };
+
+  model = {
+    nombre: 'SSW-05.30', serie: 'SSW-05 Plus', marca: 'WEG', codigoComercial: 'SSW05…0030T2246PPZ',
+    corriente: '30 A', tension: '220–460 V', bypass: 'Integrado', arranque: 'En línea',
+    tamano: 'Tamaño 1', peso: '0,74 kg', dim: '59 × 130 × 145 mm',
+    fusible: 'Tipo D · 50 A', contactor: 'CWM32', cortocircuito: '5 kA', cable: '10 mm² (AWG 8)', par: 'Potencia 3,0 Nm',
+    potencias: [
+      { t: '220–240 V', hp: '10 HP', kw: '7,5 kW' },
+      { t: '380–415 V', hp: '15 HP', kw: '11 kW' },
+      { t: '440–480 V', hp: '20 HP', kw: '15 kW' }
+    ]
+  };
+
+  params = [
+    { codigo: 'P101', nombre: 'Tensión inicial', trad: 'pedestal / initial voltage', rango: '30–80', defecto: '30', unidad: '%Un', desc: 'Ajustar al valor donde el motor empieza a girar al dar la marcha.', trimpot: 'Pedestal Voltage' },
+    { codigo: 'P102', nombre: 'Rampa de aceleración', trad: 'acceleration ramp', rango: '1–20', defecto: '10', unidad: 's', desc: 'Tiempo para que el motor llegue a la velocidad nominal.', trimpot: 'Accel. Time' },
+    { codigo: 'P104', nombre: 'Rampa de desaceleración', trad: 'deceleration ramp', rango: '0–20', defecto: 'off', unidad: 's', desc: 'Solo para bombas: reduce el golpe de ariete al parar.', trimpot: 'Decel. Time' },
+    { codigo: 'P105', nombre: 'Corriente del motor', trad: 'motor current', rango: '30–100', defecto: '100', unidad: '%', desc: 'Define todas las protecciones. Ajuste = (I motor ÷ I SSW) × 100.', trimpot: 'Motor Current' }
+  ];
+
+  presets = [
+    { carga: 'Bomba', fuenteTxt: 'Del manual del equipo', nota: 'Usar la rampa de desaceleración (P104) para evitar el golpe de ariete.' },
+    { carga: 'Ventilador / cinta', fuenteTxt: 'Guía general de ingeniería', nota: 'El SSW-05 no trae asistente por tipo de carga; usar una guía general.' }
+  ];
+
+  protecciones = [
+    { nombre: 'Sobrecarga (Ixt)', detalle: 'Imagen térmica electrónica, clase 10 (IEC 60947-4-2).', parametro: 'P105 · P106' },
+    { nombre: 'Falta de fase', detalle: 'Entrada o salida; también desbalance entre fases > 30%.', parametro: 'P106' },
+    { nombre: 'Secuencia de fase', detalle: 'Secuencia de red invertida. Sin auto-reset.', parametro: 'P106' },
+    { nombre: 'Rotor bloqueado', detalle: 'Rampa menor que el tiempo real de aceleración.', parametro: 'P106' },
+    { nombre: 'Sobrecorriente', detalle: 'Más de 3× la corriente del motor por más de 1 s.', parametro: 'P106' }
+  ];
+
+  puesta = [
+    { n: 1, texto: 'Energizar el control (A1/A2) ANTES que la potencia.', seg: true },
+    { n: 2, texto: 'Ajustar pedestal (P101), rampa (P102) y corriente del motor (P105).', seg: false },
+    { n: 3, texto: 'Verificar el sentido de giro del motor.', seg: false },
+    { n: 4, texto: 'Verificar la clase térmica y las protecciones (P106).', seg: false }
+  ];
+
+  bornes = {
+    RST: { label: 'R/S/T', rol: 'Potencia — entrada de red', que: 'Alimentación trifásica de la red.', notas: '220–460 V según modelo · fusibles tipo D 50 A.' },
+    UVW: { label: 'U/V/W', rol: 'Potencia — salida al motor', que: 'Va a los bornes del motor de inducción trifásico.', notas: 'Tierra a la carcasa del motor.' },
+    A1: { label: 'A1', rol: 'Alimentación de control', que: 'Entrada de la electrónica del arrancador.', notas: '90–250 Vca, 200 mA. Energizar ANTES que la potencia.' },
+    A2: { label: 'A2', rol: 'Alimentación de control', que: 'Común de la alimentación de control.', notas: 'Par con A1 (90–250 Vca).' },
+    DI1: { label: 'DI1', rol: 'Entrada digital 1 — Marcha/Paro', que: 'Habilita / deshabilita el motor.', notas: 'Programable a «Falla externa» (P264=2). 90–250 Vca.' },
+    DI2: { label: 'DI2', rol: 'Entrada digital 2 — Reset', que: 'Reset de fallas.', notas: 'Cierre momentáneo de 0,5 s.' },
+    '13': { label: '13', rol: 'Relé «Operación» (NA)', que: 'Cierra al recibir el comando de habilitar.', notas: 'Abre al final de la rampa o al deshabilitar.' },
+    '1423': { label: '14/23', rol: 'Común de relés', que: 'Común de los relés de salida.', notas: 'Relés 1 A 250 Vca.' },
+    '24': { label: '24', rol: 'Relé «Tensión plena» (NA)', que: 'Cierra al aplicar el 100% de tensión al motor.', notas: 'Programable por P277.' }
+  };
+
+  norm(s) { return (s || '').toUpperCase().replace(/[^A-Z0-9]/g, '').replace(/^E/, ''); }
+
+  search = () => {
+    const k = this.norm(this.state.code);
+    if (!k) { this.setState({ screen: 'fallas', result: undefined }); return; }
+    const f = this.faults[k];
+    this.setState({ screen: 'fallas', result: f ? f : null });
+  };
+
+  go = (screen) => () => this.setState({ screen });
+  ask = (c) => () => this.setState({ code: c }, this.search);
+
+  renderVals() {
+    const s = this.state;
+    const isInicio = s.screen === 'inicio';
+    const seg = (on) => ({ bg: on ? 'var(--brand-2)' : 'transparent', fg: on ? '#fff' : 'rgba(255,255,255,.75)' });
+    const segL = (on) => ({ bg: on ? 'var(--surface)' : 'transparent', fg: on ? 'var(--brand-2)' : 'var(--ink-2)' });
+    const names = { A: 'Falla al frente', B: 'Panel de trabajo', C: 'Por equipo' };
+    const r = s.result;
+    const rr = r ? Object.assign({}, r, { solucion: (r.solucion || []).map((t, i) => ({ n: i + 1, text: t })) }) : {};
+    const secId = s.fichaSec;
+    const secBtn = (id, label) => ({ id, label, on: () => this.setState({ fichaSec: id, borne: null }), bg: secId === id ? 'var(--brand)' : 'var(--surface-2)', fg: secId === id ? '#fff' : 'var(--ink-2)' });
+    const fichaTabs = [secBtn('datos', 'Datos'), secBtn('parametros', 'Parámetros'), secBtn('diagrama', 'Diagrama'), secBtn('presets', 'Presets'), secBtn('protecciones', 'Protecciones'), secBtn('puesta', 'Puesta en marcha'), secBtn('fallas', 'Fallas')];
+    const borneBtn = (id) => { const b = this.bornes[id]; return { id, label: b.label, on: () => this.setState({ borne: id }), bg: s.borne === id ? 'var(--brand)' : 'var(--code-bg)', fg: s.borne === id ? '#fff' : 'var(--code)', bd: s.borne === id ? 'var(--brand)' : 'var(--border-2)' }; };
+    const fallaChips = ['E03', 'E05', 'E63', 'E66', 'E70', 'E72'].map(c => ({ code: c, on: this.ask(c) }));
+    return {
+      fs: s.fs, code: s.code, variant: s.variant, splash: s.splash,
+      variantName: names[s.variant] || '',
+      showReviewBarInicio: (this.props.showReviewBar !== false) && isInicio,
+      isInicio, isFallas: s.screen === 'fallas', isCatalogo: s.screen === 'catalogo', isCalc: s.screen === 'calc', isAjustes: s.screen === 'ajustes',
+      isA: s.variant === 'A', isB: s.variant === 'B', isC: s.variant === 'C',
+      resultFound: !!r, resultNotFound: r === null, resultNone: r === undefined,
+      r: rr,
+      vA: seg(s.variant === 'A'), vB: seg(s.variant === 'B'), vC: seg(s.variant === 'C'),
+      fMd: segL(s.fs === 'md'), fLg: segL(s.fs === 'lg'), fXl: segL(s.fs === 'xl'),
+      tab: {
+        inicio: isInicio ? 'var(--brand-2)' : 'var(--ink-3)',
+        catalogo: (s.screen === 'catalogo' || s.screen === 'ficha') ? 'var(--brand-2)' : 'var(--ink-3)',
+        fallas: s.screen === 'fallas' ? 'var(--brand-2)' : 'var(--ink-3)',
+        calc: s.screen === 'calc' ? 'var(--brand-2)' : 'var(--ink-3)',
+        ajustes: s.screen === 'ajustes' ? 'var(--brand-2)' : 'var(--ink-3)'
+      },
+      isFicha: s.screen === 'ficha',
+      model: this.model, potencias: this.model.potencias, params: this.params, presets: this.presets, protecciones: this.protecciones,
+      puesta: this.puesta.map(p => ({ n: p.n, texto: p.texto, bg: p.seg ? 'var(--warn)' : 'var(--brand)' })),
+      fichaTabs,
+      secDatos: secId === 'datos', secParametros: secId === 'parametros', secDiagrama: secId === 'diagrama', secPresets: secId === 'presets', secProtecciones: secId === 'protecciones', secPuesta: secId === 'puesta', secFallas: secId === 'fallas',
+      bornePowerIn: borneBtn('RST'), bornePowerOut: borneBtn('UVW'), bornesControl: ['A1', 'A2', 'DI1', 'DI2', '13', '1423', '24'].map(borneBtn),
+      hasBorne: !!s.borne, noBorne: !s.borne, borneDetail: s.borne ? this.bornes[s.borne] : {},
+      fallaChips,
+      sNum: '',
+      h: {
+        varA: () => this.setState({ variant: 'A' }),
+        varB: () => this.setState({ variant: 'B' }),
+        varC: () => this.setState({ variant: 'C' }),
+        fsMd: () => this.setState({ fs: 'md' }),
+        fsLg: () => this.setState({ fs: 'lg' }),
+        fsXl: () => this.setState({ fs: 'xl' }),
+        code: (e) => this.setState({ code: e.target.value }),
+        key: (e) => { if (e.key === 'Enter') this.search(); },
+        search: this.search,
+        q72: this.ask('E72'), q05: this.ask('E05'), q63: this.ask('E63'), q70: this.ask('E70'),
+        goInicio: this.go('inicio'), goCatalogo: this.go('catalogo'), goFallas: this.go('fallas'), goCalc: this.go('calc'), goAjustes: this.go('ajustes'),
+        goFicha: () => this.setState({ screen: 'ficha', fichaSec: 'datos', borne: null }), fichaBack: () => this.setState({ screen: 'inicio' })
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
