@@ -1,0 +1,71 @@
+/* Chips de filtro: tocables, con estado activo en azul de marca */
+.chip-filtro {
+  min-height: 2.25rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--border-2);
+  border-radius: var(--radio-chip);
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+
+.chip-filtro.activo {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--on-brand);
+}
+
+.con-margen {
+  margin-top: 0.875rem;
+}
+
+/* Campo de corriente con unidad */
+.filtro-corriente {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0 0.875rem;
+  border: 1px solid var(--border-2);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.filtro-corriente input {
+  width: 5.5rem;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: var(--fuente-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.filtro-corriente input::placeholder {
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+.filtro-corriente span {
+  color: var(--ink-3);
+  font-weight: 600;
+}
+
+.limpiar-filtros {
+  margin-top: 0.875rem;
+  border: none;
+  background: none;
+  color: var(--brand-2);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.25rem 0;
+}
+
+.marca-titulo {
+  margin-bottom: 0.5rem;
+}
