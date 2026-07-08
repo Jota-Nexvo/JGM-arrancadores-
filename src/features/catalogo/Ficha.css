@@ -1,0 +1,341 @@
+/* ---- Hero ---- */
+.volver {
+  align-self: flex-start;
+  border: none;
+  background: none;
+  color: var(--brand-2);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.25rem 0;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ficha-titulo {
+  font-size: 1.875rem; /* 30px */
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.clave-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.625rem;
+  margin-top: 0.5rem;
+}
+
+.clave-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem 0.875rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radio-tarjeta);
+  box-shadow: var(--shadow);
+}
+
+.clave-card b {
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+/* ---- Barra de secciones sticky ---- */
+.secciones-barra {
+  position: sticky;
+  top: -1.125rem; /* cubre el padding superior del contenedor de scroll */
+  z-index: 5;
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: calc(0.625rem + 1.125rem) 1rem 0.625rem;
+  margin: calc(0.25rem - 1.125rem) -1rem 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  scrollbar-width: none;
+}
+
+.secciones-barra::-webkit-scrollbar {
+  display: none;
+}
+
+.secciones-barra .chip-filtro {
+  flex-shrink: 0;
+}
+
+.seccion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  animation: aparicion 0.18s ease-out;
+}
+
+/* ---- Fuente citada ---- */
+.fuente-seccion {
+  font-size: 0.78rem;
+  color: var(--ink-3);
+}
+
+.fuente-seccion .pendiente {
+  color: var(--warn);
+  font-weight: 600;
+}
+
+.pie-ficha {
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* ---- Datos: selector de calibre + tabla ---- */
+.calibre-resultado {
+  margin-top: 0.625rem;
+  font-size: 0.95rem;
+}
+
+.calibre-resultado.fuera {
+  color: var(--warn);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.tabla-scroll {
+  overflow-x: auto;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+}
+
+.tabla-scroll table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 34rem;
+  font-size: 0.82rem;
+}
+
+.tabla-scroll th {
+  text-align: left;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  padding: 0.375rem 0.625rem 0.375rem 0;
+  border-bottom: 1px solid var(--border-2);
+  white-space: nowrap;
+}
+
+.tabla-scroll td {
+  padding: 0.45rem 0.625rem 0.45rem 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.tabla-scroll tr.resaltada td {
+  background: var(--ok-bg);
+  font-weight: 600;
+}
+
+.lista-simple {
+  margin: 0;
+  padding-left: 1.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  font-size: 0.9rem;
+}
+
+/* ---- Parámetros ---- */
+.param-encabezado {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  margin-bottom: 0.375rem;
+}
+
+.param-badge {
+  flex-shrink: 0;
+  padding: 0.3rem 0.5rem;
+  border-radius: var(--radio-chip);
+  background: var(--brand);
+  color: var(--on-brand);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.param-desc {
+  font-size: 0.875rem;
+  color: var(--ink-2);
+  margin-bottom: 0.55rem;
+}
+
+/* ---- Diagrama ---- */
+.tarjeta-aviso {
+  display: flex;
+  gap: 0.625rem;
+  align-items: flex-start;
+  background: var(--warn-bg);
+  border-color: color-mix(in srgb, var(--warn) 25%, transparent);
+  color: var(--warn);
+}
+
+.tarjeta-aviso p {
+  font-size: 0.875rem;
+}
+
+.borne-panel {
+  border-color: var(--brand-2);
+  border-width: 1.5px;
+}
+
+.borne-nombre {
+  font-weight: 600;
+  color: var(--code);
+  margin-bottom: 0.5rem;
+}
+
+.borne-panel dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.3rem 0.75rem;
+}
+
+.borne-panel dt {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  padding-top: 0.1rem;
+}
+
+.borne-panel dd {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* ---- Presets ---- */
+.preset-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.375rem;
+}
+
+/* ---- Protecciones ---- */
+.proteccion-fila {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.625rem 0;
+  color: var(--brand-2); /* color del escudo */
+}
+
+.proteccion-fila + .proteccion-fila {
+  border-top: 1px solid var(--border);
+}
+
+.proteccion-fila b {
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.proteccion-fila .param-desc {
+  margin: 0.15rem 0 0.45rem;
+}
+
+.chip-enlace {
+  border: none;
+  background: var(--code-bg);
+  color: var(--code);
+  font-family: var(--fuente-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.22rem 0.55rem;
+  border-radius: var(--radio-chip);
+  cursor: pointer;
+}
+
+/* ---- Puesta en marcha ---- */
+.pasos-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.pasos-lista li {
+  display: flex;
+  gap: 0.625rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  padding: 0.375rem;
+  border-radius: 0.55rem;
+}
+
+.pasos-lista li.seguridad {
+  background: var(--warn-bg);
+  color: var(--warn);
+  font-weight: 600;
+}
+
+.paso-num {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand);
+  color: var(--on-brand);
+  border-radius: 0.375rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ---- Fallas ---- */
+.fallas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip-falla {
+  min-height: 2.5rem;
+  min-width: 3.25rem;
+  padding: 0 0.625rem;
+  border: 1px solid var(--border-2);
+  border-radius: var(--radio-chip);
+  background: var(--code-bg);
+  color: var(--code);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* ---- Notas del técnico ---- */
+.notas-area {
+  width: 100%;
+  border: 1px solid var(--border-2);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  font-family: var(--fuente-ui);
+  font-size: 0.9375rem;
+  color: var(--ink);
+  background: var(--surface);
+  resize: vertical;
+}
+
+.notas-area::placeholder {
+  color: var(--ink-3);
+}

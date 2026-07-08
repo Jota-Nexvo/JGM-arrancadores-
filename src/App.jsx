@@ -4,6 +4,7 @@ import BarraPestanas from './components/BarraPestanas.jsx'
 import Splash from './components/Splash.jsx'
 import Inicio from './features/inicio/Inicio.jsx'
 import Catalogo from './features/catalogo/Catalogo.jsx'
+import Ficha from './features/catalogo/Ficha.jsx'
 import Fallas from './features/buscador-fallas/Fallas.jsx'
 import Calculadora from './features/calculadora/Calculadora.jsx'
 import Ajustes from './features/ajustes/Ajustes.jsx'
@@ -25,24 +26,40 @@ export default function App() {
     }
   }, [])
 
-  // Buscar desde el Inicio: guarda el código y salta a la pestaña Fallas
+  // Buscar desde el Inicio o la Ficha: guarda el código y salta a Fallas
   function buscarCodigo(codigo) {
     setCodigoBuscado(codigo)
     setPantalla('fallas')
   }
+
+  // La Ficha vive "dentro" de la pestaña Catálogo
+  const pestanaActiva = pantalla === 'ficha' ? 'catalogo' : pantalla
 
   return (
     <div className="app-shell">
       {splashVisible && <Splash saliendo={splashSale} />}
       <Encabezado />
       <main className="contenido" key={pantalla}>
-        {pantalla === 'inicio' && <Inicio alNavegar={setPantalla} alBuscar={buscarCodigo} />}
-        {pantalla === 'catalogo' && <Catalogo />}
+        {pantalla === 'inicio' && (
+          <Inicio
+            alNavegar={setPantalla}
+            alBuscar={buscarCodigo}
+            alAbrirFicha={() => setPantalla('ficha')}
+          />
+        )}
+        {pantalla === 'catalogo' && <Catalogo alAbrirFicha={() => setPantalla('ficha')} />}
+        {pantalla === 'ficha' && (
+          <Ficha
+            alVolver={() => setPantalla('catalogo')}
+            alBuscarFalla={buscarCodigo}
+            alAbrirBuscador={() => setPantalla('fallas')}
+          />
+        )}
         {pantalla === 'fallas' && <Fallas codigoInicial={codigoBuscado} />}
         {pantalla === 'calc' && <Calculadora />}
         {pantalla === 'ajustes' && <Ajustes />}
       </main>
-      <BarraPestanas activa={pantalla} alCambiar={setPantalla} />
+      <BarraPestanas activa={pestanaActiva} alCambiar={setPantalla} />
     </div>
   )
 }

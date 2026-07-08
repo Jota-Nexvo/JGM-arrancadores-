@@ -13,7 +13,7 @@ import './Inicio.css'
 // buscador de falla protagonista + grilla 2×2 + favoritos y recientes.
 // Los modelos listados son EJEMPLOS visuales; se alimentan de IndexedDB
 // cuando llegue el motor de datos (Paso 11).
-export default function Inicio({ alNavegar, alBuscar }) {
+export default function Inicio({ alNavegar, alBuscar, alAbrirFicha }) {
   const accesos = [
     { id: 'catalogo', titulo: 'Catálogo', sub: 'Por marca', Icono: IconoGrilla },
     { id: 'calc', titulo: 'Calculadora', sub: 'Parámetros', Icono: IconoSliders },
@@ -46,7 +46,13 @@ export default function Inicio({ alNavegar, alBuscar }) {
 
       <p className="overline">Favoritos</p>
       <Tarjeta className="tarjeta-lista">
-        <FilaModelo badge="WEG" nombre="SSW-05 Plus" detalle="3–85 A · 220–575 V" favorito />
+        <FilaModelo
+          badge="WEG"
+          nombre="SSW-05 Plus"
+          detalle="3–85 A · 220–575 V"
+          favorito
+          onClick={alAbrirFicha}
+        />
       </Tarjeta>
 
       <p className="overline">Consultados recientemente</p>

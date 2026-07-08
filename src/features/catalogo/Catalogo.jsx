@@ -7,8 +7,9 @@ import './Catalogo.css'
 
 // Catálogo (mockup Paso 7): exploración por marca + filtros que filtran
 // de verdad (tensión / corriente del motor / tipo de carga), sobre datos
-// de ejemplo a nivel de serie. Tocar una fila abrirá la Ficha (Paso 8).
-export default function Catalogo() {
+// de ejemplo a nivel de serie. Tocar el SSW-05 abre la Ficha (Paso 8);
+// las demás series abren ficha cuando se carguen sus datos (Fase 5).
+export default function Catalogo({ alAbrirFicha }) {
   const [tension, setTension] = useState(null)
   const [corriente, setCorriente] = useState('')
   const [carga, setCarga] = useState(null)
@@ -99,6 +100,7 @@ export default function Catalogo() {
                   badge={s.badge}
                   nombre={s.nombre}
                   detalle={`${s.corrienteTexto} · ${s.tensionTexto} · ${s.interfaz}`}
+                  onClick={s.id === 'weg-ssw05' ? alAbrirFicha : undefined}
                   chips={
                     <>
                       {s.bypass && <Chip>By-pass (derivación)</Chip>}

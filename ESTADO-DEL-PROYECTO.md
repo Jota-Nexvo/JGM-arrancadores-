@@ -1,6 +1,6 @@
 # ESTADO DEL PROYECTO — JGM Arrancadores
 
-> **Para Claude (nueva sesión):** este archivo es el traspaso de contexto. Leelo junto con `CLAUDE.md` (reglas maestras) y tenés TODO lo necesario para continuar sin re-leer el resto, salvo que el paso lo requiera. Última actualización: **2026-07-08, fin del Paso 7**.
+> **Para Claude (nueva sesión):** este archivo es el traspaso de contexto. Leelo junto con `CLAUDE.md` (reglas maestras) y tenés TODO lo necesario para continuar sin re-leer el resto, salvo que el paso lo requiera. Última actualización: **2026-07-08, fin del Paso 8**.
 
 ---
 
@@ -31,8 +31,9 @@ Regla de idioma UI: término técnico del manual + traducción entre paréntesis
 | 5 | Shell: 5 pestañas (Inicio·Catálogo·Fallas·Calc.·Ajustes), splash ~1.1s, Ajustes funcional | ✅ |
 | 6 | Inicio "Panel de trabajo": buscador falla protagonista (→ salta a Fallas con el código), grilla 2×2, Favoritos + Recientes (ejemplos) | ✅ |
 | 7 | Catálogo: marcas WEG/Lovato, filtros REALES (tensión 220/380/400, corriente A, tipo de carga), datos serie de ejemplo | ✅ |
-| **8** | **SIGUIENTE ⭐:** Ficha de modelo mockup completa (ver §6) | ⬜ |
-| 9-10 | Calculadora (2 modos) + Fallas mockup → revisión integral = **aprobación del diseño** | ⬜ |
+| 8 | Ficha SSW-05 mockup: hero + chips sticky (8 secciones incl. Notas), selector de calibre, notas del técnico (localStorage), diagrama LÓGICO potencia+comando con bornes tocables y RF opcional, tabla de variantes, puesta en marcha con pasos de seguridad en ámbar, chips de fallas → buscador | ✅ |
+| **9** | **SIGUIENTE:** Calculadora mockup (2 modos, chips, aviso seguridad) + Buscador de fallas mockup (vacío/sin resultado/resultado, 21 fallas SSW-05 ya extraídas) | ⬜ |
+| 10 | Revisión integral del mockup = **aprobación del diseño** | ⬜ |
 | 11-13 | Motor de datos: esquema serie+variantes con `tipoEquipo`, IndexedDB, editor, export/import | ⬜ |
 | 14-17 | Ficha REAL WEG SSW-05 (molde de oro): datos, diagrama 2 vías (usuario elige), secciones, fallas | ⬜ |
 | 18-20 | SSW-07 → ADXL → SSW-08 (⚠ falta User's Guide hardware SSW-08, lo consigue el usuario) | ⬜ |
