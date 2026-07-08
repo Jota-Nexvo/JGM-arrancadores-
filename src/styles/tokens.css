@@ -1,0 +1,51 @@
+/* ============================================================
+   Tokens del sistema de diseño JGM — valores exactos de
+   diseno-referencia/README-DISENO.md §3. Solo modo claro.
+   ============================================================ */
+
+:root {
+  /* --- Paleta --- */
+  --bg: #f4f7fc; /* fondo de la app */
+  --surface: #ffffff; /* tarjetas / campos */
+  --surface-2: #edf1fa; /* superficie secundaria / chips */
+  --surface-3: #e3eaf6; /* superficie terciaria */
+  --border: #d8dfef; /* bordes suaves */
+  --border-2: #bfc9e0; /* bordes de campos / énfasis */
+  --ink: #2a3566; /* texto principal */
+  --ink-2: #5c6690; /* texto secundario */
+  --ink-3: #8e96b6; /* texto terciario / íconos apagados */
+  --brand: #344687; /* azul de marca (acción primaria) */
+  --brand-2: #2767a5; /* azul acción / estado activo */
+  --accent: #327db8; /* acento / azure */
+  --on-brand: #ffffff; /* texto/ícono sobre azul */
+  --ok: #1e8a5b;
+  --ok-bg: #e5f3ec;
+  --warn: #93611a; /* advertencia / «sin verificar» */
+  --warn-bg: #f8efd9;
+  --danger: #c23b3b;
+  --danger-bg: #fbe7e7;
+  --code: #274690; /* códigos y datos mono */
+  --code-bg: #edf1fa;
+  --shadow: 0 1px 2px rgba(30, 42, 80, 0.07);
+  --shadow-2: 0 6px 20px rgba(30, 42, 80, 0.12);
+
+  /* --- Tipografía --- */
+  --fuente-ui: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fuente-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  /* --- Radios --- */
+  --radio-tarjeta: 14px;
+  --radio-boton: 11px;
+  --radio-chip: 8px;
+  --radio-chip-icono: 12px;
+  --radio-splash: 26px;
+
+  /* --- Escala de tamaño de letra (A− / A / A+ / A++) --- */
+  --fs-escala: 1;
+}
+
+/* La escala agranda/achica TODA la app (texto y controles, en rem) */
+html[data-fs='sm'] { --fs-escala: 0.86; } /* A−  (pedido del usuario) */
+html[data-fs='md'] { --fs-escala: 1; }    /* A   */
+html[data-fs='lg'] { --fs-escala: 1.14; } /* A+  */
+html[data-fs='xl'] { --fs-escala: 1.28; } /* A++ */

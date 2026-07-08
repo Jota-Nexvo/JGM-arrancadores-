@@ -1,52 +1,49 @@
-/* Estilos mínimos del Paso 1 — los tokens del sistema de diseño JGM llegan en el Paso 3 */
+@import './tokens.css';
+
+/* ============================================================
+   Base global — reset mínimo + tipografía. Todo en rem para
+   que la escala A−/A/A+/A++ agrande texto y controles juntos.
+   ============================================================ */
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  font-size: calc(16px * var(--fs-escala));
+}
+
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  background: #344687; /* azul de marca JGM */
-  color: #2a3566;
+  font-family: var(--fuente-ui);
+  font-size: 0.9375rem; /* 15px */
+  line-height: 1.5;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
 }
 
-.paso1 {
-  min-height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
-
-.paso1-card {
-  background: #ffffff;
-  border-radius: 26px;
-  padding: 32px 24px;
-  max-width: 340px;
-  width: 100%;
-  text-align: center;
-  box-shadow: 0 6px 20px rgba(30, 42, 80, 0.25);
-}
-
-.paso1-logo {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
-}
-
-.paso1-card h1 {
-  margin: 12px 0 4px;
-  font-size: 24px;
-}
-
-.paso1-card p {
+h1,
+h2,
+h3,
+p {
   margin: 0;
-  color: #5c6690;
-  font-size: 15px;
 }
 
-.paso1-estado {
-  margin-top: 18px !important;
-  color: #1e8a5b !important;
+button {
+  font-family: inherit;
+}
+
+code,
+.mono {
+  font-family: var(--fuente-mono);
+}
+
+/* Overline: etiqueta de sección en mayúsculas (11px/600) */
+.overline {
+  font-size: 0.6875rem;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
 }

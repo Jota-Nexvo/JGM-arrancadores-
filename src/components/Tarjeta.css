@@ -1,0 +1,7 @@
+.tarjeta {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radio-tarjeta);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
