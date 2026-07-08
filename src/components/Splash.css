@@ -1,0 +1,45 @@
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--brand);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.splash.salir {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash-tarjeta {
+  background: var(--surface);
+  border-radius: var(--radio-splash);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-2);
+  margin-bottom: 0.75rem;
+}
+
+.splash-tarjeta img {
+  width: 7rem;
+  height: 7rem;
+  object-fit: contain;
+  display: block;
+}
+
+.splash-nombre {
+  color: var(--on-brand);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.splash-sub {
+  color: var(--on-brand);
+  opacity: 0.75;
+  font-size: 0.875rem;
+}

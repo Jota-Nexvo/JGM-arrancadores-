@@ -1,0 +1,30 @@
+.barra-pestanas {
+  display: flex;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.barra-pestanas button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  min-height: 3.875rem; /* ~62px */
+  border: none;
+  background: none;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: color 0.18s;
+}
+
+.barra-pestanas button span {
+  font-size: 0.656rem; /* 10.5px */
+  font-weight: 600;
+}
+
+.barra-pestanas button.activa {
+  color: var(--brand-2);
+}

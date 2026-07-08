@@ -74,6 +74,33 @@ export function IconoGrilla(props) {
   )
 }
 
+export function IconoCasa(props) {
+  return (
+    <Svg {...props}>
+      <path d="m3 10.5 9-7.5 9 7.5" />
+      <path d="M5.5 9V20h4.6v-5.4h3.8V20h4.6V9" />
+    </Svg>
+  )
+}
+
+export function IconoSliders(props) {
+  return (
+    <Svg {...props}>
+      <path d="M21 5h-7M10 5H3M21 12h-9M8 12H3M21 19h-5M12 19H3" />
+      <path d="M14 3v4M8 10v4M16 17v4" />
+    </Svg>
+  )
+}
+
+export function IconoEngranaje(props) {
+  return (
+    <Svg {...props}>
+      <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+      <circle cx="12" cy="12" r="3" />
+    </Svg>
+  )
+}
+
 /* Gota de marca del encabezado: rellena en --brand-2 (no line) */
 export function GotaMarca({ tamano = 22 }) {
   return (

@@ -47,3 +47,54 @@ code,
   letter-spacing: 0.1em;
   color: var(--ink-3);
 }
+
+/* Título de pantalla (23-25px/600) */
+.titulo-pantalla {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0.125rem 0 0.75rem;
+}
+
+/* Estructura común de cada pantalla + aparición sutil (0.18s) */
+.pantalla {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  animation: aparicion 0.18s ease-out;
+}
+
+@keyframes aparicion {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.seccion-titulo {
+  margin-bottom: 0.625rem;
+}
+
+.nota {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--ink-3);
+}
+
+.fila-envuelta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Pie "Acerca de" en Ajustes */
+.acerca {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  margin-top: 0.5rem;
+}
